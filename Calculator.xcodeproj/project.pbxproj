@@ -12,16 +12,20 @@
 		2525989E1F70EF1000425373 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2525989C1F70EF1000425373 /* Main.storyboard */; };
 		252598A01F70EF1000425373 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2525989F1F70EF1000425373 /* Assets.xcassets */; };
 		252598A31F70EF1000425373 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 252598A11F70EF1000425373 /* LaunchScreen.storyboard */; };
+		253EA1A61F724B250014E925 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253EA1A51F724B250014E925 /* RoundButton.swift */; };
+		253EA1A81F724DF20014E925 /* RoundLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253EA1A71F724DF20014E925 /* RoundLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		252598951F70EF1000425373 /* HelloWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		252598951F70EF1000425373 /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		252598981F70EF1000425373 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2525989A1F70EF1000425373 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2525989D1F70EF1000425373 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2525989F1F70EF1000425373 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		252598A21F70EF1000425373 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		252598A41F70EF1000425373 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		253EA1A51F724B250014E925 /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		253EA1A71F724DF20014E925 /* RoundLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,7 +42,7 @@
 		2525988C1F70EF1000425373 = {
 			isa = PBXGroup;
 			children = (
-				252598971F70EF1000425373 /* HelloWorld */,
+				252598971F70EF1000425373 /* Calculator */,
 				252598961F70EF1000425373 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -46,12 +50,12 @@
 		252598961F70EF1000425373 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				252598951F70EF1000425373 /* HelloWorld.app */,
+				252598951F70EF1000425373 /* Calculator.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		252598971F70EF1000425373 /* HelloWorld */ = {
+		252598971F70EF1000425373 /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
 				252598981F70EF1000425373 /* AppDelegate.swift */,
@@ -60,16 +64,18 @@
 				2525989F1F70EF1000425373 /* Assets.xcassets */,
 				252598A11F70EF1000425373 /* LaunchScreen.storyboard */,
 				252598A41F70EF1000425373 /* Info.plist */,
+				253EA1A51F724B250014E925 /* RoundButton.swift */,
+				253EA1A71F724DF20014E925 /* RoundLabel.swift */,
 			);
-			path = HelloWorld;
+			path = Calculator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		252598941F70EF1000425373 /* HelloWorld */ = {
+		252598941F70EF1000425373 /* Calculator */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 252598A71F70EF1000425373 /* Build configuration list for PBXNativeTarget "HelloWorld" */;
+			buildConfigurationList = 252598A71F70EF1000425373 /* Build configuration list for PBXNativeTarget "Calculator" */;
 			buildPhases = (
 				252598911F70EF1000425373 /* Sources */,
 				252598921F70EF1000425373 /* Frameworks */,
@@ -79,9 +85,9 @@
 			);
 			dependencies = (
 			);
-			name = HelloWorld;
+			name = Calculator;
 			productName = HelloWorld;
-			productReference = 252598951F70EF1000425373 /* HelloWorld.app */;
+			productReference = 252598951F70EF1000425373 /* Calculator.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -96,11 +102,12 @@
 				TargetAttributes = {
 					252598941F70EF1000425373 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 2BULHRS882;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = 252598901F70EF1000425373 /* Build configuration list for PBXProject "HelloWorld" */;
+			buildConfigurationList = 252598901F70EF1000425373 /* Build configuration list for PBXProject "Calculator" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -113,7 +120,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				252598941F70EF1000425373 /* HelloWorld */,
+				252598941F70EF1000425373 /* Calculator */,
 			);
 		};
 /* End PBXProject section */
@@ -136,8 +143,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				253EA1A61F724B250014E925 /* RoundButton.swift in Sources */,
 				2525989B1F70EF1000425373 /* ViewController.swift in Sources */,
 				252598991F70EF1000425373 /* AppDelegate.swift in Sources */,
+				253EA1A81F724DF20014E925 /* RoundLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,9 +269,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = HelloWorld/Info.plist;
+				DEVELOPMENT_TEAM = 2BULHRS882;
+				INFOPLIST_FILE = Calculator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Tarun.HelloWorld;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Tarun.Calculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -272,9 +282,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = HelloWorld/Info.plist;
+				DEVELOPMENT_TEAM = 2BULHRS882;
+				INFOPLIST_FILE = Calculator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Tarun.HelloWorld;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Tarun.Calculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -283,7 +294,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		252598901F70EF1000425373 /* Build configuration list for PBXProject "HelloWorld" */ = {
+		252598901F70EF1000425373 /* Build configuration list for PBXProject "Calculator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				252598A51F70EF1000425373 /* Debug */,
@@ -292,13 +303,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		252598A71F70EF1000425373 /* Build configuration list for PBXNativeTarget "HelloWorld" */ = {
+		252598A71F70EF1000425373 /* Build configuration list for PBXNativeTarget "Calculator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				252598A81F70EF1000425373 /* Debug */,
 				252598A91F70EF1000425373 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
