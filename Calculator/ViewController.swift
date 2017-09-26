@@ -47,7 +47,6 @@ class ViewController: UIViewController {
                 // do nothing
                 return
             } else {
-                clearButton.setTitle("C", for: .normal)
                 isInInitialState = false
                 currentOperand = sender.currentTitle!
                 resultDisplayField.text = currentOperand
@@ -89,42 +88,44 @@ class ViewController: UIViewController {
     }
     
     @IBAction func onOperatorClicked(_ sender: RoundButton) {
-        // As soon as an operator is clicked, Add the lastest operand entered by user into the array of operands.
-        operands.append(currentOperand)
-        
-        /* If the number of operands in the array is 2 or more, that means there is already an expression that could possibly be evaluated and displayed
-         * to the user if the operator precedence conditions are met.
-         */
-        if (operands.count > 1) {
+        // If the previous button clicked was also an operator, simply replace the last operator with the current one.
+        if (wasLastButtonClickedAnOperator) {
+            operators[operators.count - 1] = sender.currentTitle!
+        } else {
             
-            // Find whether the currently clicked operator has a higher precedence order than the last operator in the list of operators.
-            let isCurrentOperatorOfHigherPrecedence : Bool =
-                (getOperatorPrecedence(paramOperator: sender.currentTitle!) > getOperatorPrecedence(paramOperator: operators.last!))
+            // As soon as an operator is clicked, Add the lastest operand entered by user into the array of operands.
+            operands.append(currentOperand)
             
-            // If the current operator clicked is of a lower precedence than the previous ones, then the expression until now (excluding the current operator) can safely be evaluated and displayed to the user.
-            if (!isCurrentOperatorOfHigherPrecedence) {
-                let result : Float = evaluateExpression(operators: operators, operands: operands)
+            /* If the number of operands in the array is 2 or more, that means there is already an expression that could possibly be evaluated and displayed
+             * to the user if the operator precedence conditions are met.
+             */
+            if (operands.count > 1) {
                 
-                if (result.isInfinite) {
-                    resultDisplayField.text = "Infinity !!!"
-                    resetData()
-                } else if (result.isNaN) {
-                    resultDisplayField.text = "Error !!!"
-                    resetData()
-                } else {
-                    // If the float result has a value of 0 after decimal point, then show the result as an integer.
-                    if (floor(result) == result) {
-                        resultDisplayField.text = String(Int(result))
+                // Find whether the currently clicked operator has a higher precedence order than the last operator in the list of operators.
+                let isCurrentOperatorOfHigherPrecedence : Bool =
+                    (getOperatorPrecedence(paramOperator: sender.currentTitle!) > getOperatorPrecedence(paramOperator: operators.last!))
+                
+                // If the current operator clicked is of a lower precedence than the previous ones, then the expression until now (excluding the current operator) can safely be evaluated and displayed to the user.
+                if (!isCurrentOperatorOfHigherPrecedence) {
+                    let result : Float = evaluateExpression(operators: operators, operands: operands)
+                    
+                    if (result.isInfinite || result.isNaN) {
+                        handleError(result: result)
                     } else {
-                        resultDisplayField.text = String(result)
+                        // If the float result has a value of 0 after decimal point, then show the result as an integer.
+                        if (floor(result) == result) {
+                            resultDisplayField.text = String(Int(result))
+                        } else {
+                            resultDisplayField.text = String(result)
+                        }
                     }
                 }
             }
+            
+            operators.append(sender.currentTitle!)
+            resetCurrentOperandToZero()
+            wasLastButtonClickedAnOperator = true
         }
-        
-        operators.append(sender.currentTitle!)
-        resetCurrentOperandToZero()
-        wasLastButtonClickedAnOperator = true
     }
     
     @IBAction func onEqualsButtonClicked(_ sender: RoundButton) {
@@ -160,7 +161,6 @@ class ViewController: UIViewController {
     }
     
     @IBAction func onResetButtonClicked(_ sender: RoundButton) {
-        sender.setTitle("AC", for: .normal)
         resultDisplayField.text = "0"
         resetData()
     }
@@ -276,7 +276,7 @@ class ViewController: UIViewController {
         if (result.isInfinite) {
             resultDisplayField.text = "Infinity !!!"
         } else if (result.isNaN) {
-            resultDisplayField.text = "Error !!!"
+            resultDisplayField.text = "Bad Expression !!!"
         }
         resetData()
     }
