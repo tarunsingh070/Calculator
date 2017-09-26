@@ -1,10 +1,12 @@
-//
-//  RoundLabel.swift
-//  Calculator
-//
-//  Created by Tarun Singh on 2017-09-20.
-//  Copyright © 2017 Tarun Singh. All rights reserved.
-//
+/*
+ * File name : RoundLabel.swift
+ * Author: Tarun Singh
+ * Date: September 20, 2017
+ * Student ID: 300967393
+ * Description: Custom UILabel class to make the label corners rounded and add attributes to provide insets.
+ * Version: 0.1
+ * Copyright © 2017 Tarun Singh. All rights reserved.
+ */
 
 import UIKit
 

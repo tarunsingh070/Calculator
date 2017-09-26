@@ -1,10 +1,12 @@
-//
-//  RoundButton.swift
-//  Calculator
-//
-//  Created by Tarun Singh on 2017-09-20.
-//  Copyright © 2017 Tarun Singh. All rights reserved.
-//
+/*
+ * File name : RoundButton.swift
+ * Author: Tarun Singh
+ * Date: September 20, 2017
+ * Student ID: 300967393
+ * Description: Custom UIButton class to make the button corners rounded.
+ * Version: 0.1
+ * Copyright © 2017 Tarun Singh. All rights reserved.
+ */
 
 import UIKit
 
