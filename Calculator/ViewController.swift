@@ -3,8 +3,8 @@
  * Author: Tarun Singh
  * Date: September 23, 2017
  * Student ID: 300967393
- * Description: ViewController class for the calculator.
- * Version: 0.2 - Added basic operations functionality.
+ * Description: ViewController class for the calculator screen which allows user to do basic operations (+, -, /, *) while keeping the Operators precedence in view.
+ * Version: 0.3 - Made basic operations functionality more stable.
  * Copyright © 2017 Tarun Singh. All rights reserved.
  */
 
@@ -46,12 +46,26 @@ class ViewController: UIViewController {
             if (sender.currentTitle == "0") {
                 // do nothing
                 return
-            } else {
-                isInInitialState = false
-                currentOperand = sender.currentTitle!
-                resultDisplayField.text = currentOperand
             }
+            
+            // If users presses the - operator in the beginning itself, that means user wants to enter a negative operand.
+            if (resultDisplayField.text == "-") {
+                currentOperand = (resultDisplayField.text?.appending(sender.currentTitle!))!
+            } else {
+                currentOperand = sender.currentTitle!
+            }
+            
+            isInInitialState = false
+            
+            resultDisplayField.text = currentOperand
+            
         } else {
+            // If the user is already seeing 0 in the display filed, and again presses 0, then take no action.
+            if (sender.currentTitle == "0" && resultDisplayField.text == "0") {
+                // do nothing
+                return
+            }
+            
             /* If the last button clicked was an operator, that means user has just started to enter a new operand.
              * If the last button clicked was NOT an operator, that means user is in the middle of entering an operand
              , hence continue appending the digits.
@@ -88,43 +102,57 @@ class ViewController: UIViewController {
     }
     
     @IBAction func onOperatorClicked(_ sender: RoundButton) {
-        // If the previous button clicked was also an operator, simply replace the last operator with the current one.
+        // If the previous button clicked was also an operator, then first check if the user wants to enter a negative operand, Otherwise simply replace the last operator with the current one.
         if (wasLastButtonClickedAnOperator) {
-            operators[operators.count - 1] = sender.currentTitle!
+            if (sender.currentTitle! == "-") {
+                currentOperand = "0"
+                currentOperand = "-".appending(currentOperand)
+                resultDisplayField.text = "-"
+                wasLastButtonClickedAnOperator = false
+            } else if (operators.count > 0) {
+                operators[operators.count - 1] = sender.currentTitle!
+            }
         } else {
-            
-            // As soon as an operator is clicked, Add the lastest operand entered by user into the array of operands.
-            operands.append(currentOperand)
-            
-            /* If the number of operands in the array is 2 or more, that means there is already an expression that could possibly be evaluated and displayed
-             * to the user if the operator precedence conditions are met.
-             */
-            if (operands.count > 1) {
+            // If the user presses - operator while the currentOperand is 0, that means user wants to enter a negative number, so replace the field with "-" .
+            if (sender.currentTitle == "-" && currentOperand == "0") {
+                currentOperand = "-".appending(currentOperand)
+                resultDisplayField.text = "-"
+                wasLastButtonClickedAnOperator = false
+            } else {
                 
-                // Find whether the currently clicked operator has a higher precedence order than the last operator in the list of operators.
-                let isCurrentOperatorOfHigherPrecedence : Bool =
-                    (getOperatorPrecedence(paramOperator: sender.currentTitle!) > getOperatorPrecedence(paramOperator: operators.last!))
+                // As soon as an operator is clicked, Add the latest operand entered by user into the array of operands.
+                operands.append(currentOperand)
                 
-                // If the current operator clicked is of a lower precedence than the previous ones, then the expression until now (excluding the current operator) can safely be evaluated and displayed to the user.
-                if (!isCurrentOperatorOfHigherPrecedence) {
-                    let result : Float = evaluateExpression(operators: operators, operands: operands)
+                /* If the number of operands in the array is 2 or more, that means there is already an expression that could possibly be evaluated and displayed
+                 * to the user if the operator precedence conditions are met.
+                 */
+                if (operands.count > 1) {
                     
-                    if (result.isInfinite || result.isNaN) {
-                        handleError(result: result)
-                    } else {
-                        // If the float result has a value of 0 after decimal point, then show the result as an integer.
-                        if (floor(result) == result) {
-                            resultDisplayField.text = String(Int(result))
+                    // Find whether the currently clicked operator has a higher precedence order than the last operator in the list of operators.
+                    let isCurrentOperatorOfHigherPrecedence : Bool =
+                        (getOperatorPrecedence(paramOperator: sender.currentTitle!) > getOperatorPrecedence(paramOperator: operators.last!))
+                    
+                    // If the current operator clicked is of a lower precedence than the previous ones, then the expression until now (excluding the current operator) can safely be evaluated and displayed to the user.
+                    if (!isCurrentOperatorOfHigherPrecedence) {
+                        let result : Float = evaluateExpression(operators: operators, operands: operands)
+                        
+                        if (result.isInfinite || result.isNaN) {
+                            handleError(result: result)
                         } else {
-                            resultDisplayField.text = String(result)
+                            // If the float result has a value of 0 after decimal point, then show the result as an integer.
+                            if (floor(result) == result) {
+                                resultDisplayField.text = String(Int(result))
+                            } else {
+                                resultDisplayField.text = String(result)
+                            }
                         }
                     }
                 }
+                
+                operators.append(sender.currentTitle!)
+                resetCurrentOperandToZero()
+                wasLastButtonClickedAnOperator = true
             }
-            
-            operators.append(sender.currentTitle!)
-            resetCurrentOperandToZero()
-            wasLastButtonClickedAnOperator = true
         }
     }
     
